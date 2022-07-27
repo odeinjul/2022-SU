@@ -44,5 +44,14 @@ int main(){
     // matrix multiply i * j
     // matrix multiply vector i * v
 
+    //Assignment Part
+    Eigen::Vector3f p(2.0f,1.0f,1.0f);
+    double alpha = 45.0/180.0*acos(-1);
+    Eigen::Matrix3f m;
+    m << cos(alpha), -sin(alpha), 1,
+         sin(alpha), cos(alpha) , 2,
+         0, 0, 1;
+    std::cout << "Answer of pa0:" << std::endl;
+    std::cout << m * p << std::endl;
     return 0;
 }
