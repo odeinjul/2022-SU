@@ -59,7 +59,7 @@ Near a local minimum, derivative becomes smaller, update steps become smaller.
 Linear -> cost function is convex -> can use gradient descent to reach the only global minimum.
 
 
-$repeate\space until\space converge:${
+$repeate\space until\space converge${
 $$
 w = w - \alpha \frac{1}{m}\sum\limits^{m-1}_0 (f_{(w,b)}(x^{(i)}) - y^{(i)})x^{(i)}
 \newline

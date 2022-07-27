@@ -1,0 +1,6 @@
+.DS_Store
+*.pdf
+build/
+cmake-build-debug/
+.idea/
+.vscode/
