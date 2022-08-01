@@ -48,4 +48,65 @@ this cost function will be convex so that gradient descent can be used to find t
 
 Use the simplified version of the loss function, we can get the cost function:
 
-$$J(\vec{w},b) = -\frac{1}{m}{\sum^{m-1}_0}\left[ y^{(i)} \log\left(f_{\mathbf{w},b}\left( \mathbf{x}^{(i)} \right) \right) + \left( 1 - y^{(i)}\right) \log \left( 1 - f_{\mathbf{w},b}\left( \mathbf{x}^{(i)} \right) \right)\right]$$
+$$J(\vec{w},b) = -\frac{1}{m}{\sum^{m-1}_{i=0}}\left[ y^{(i)} \log\left(f_{\mathbf{w},b}\left( \mathbf{x}^{(i)} \right) \right) + \left( 1 - y^{(i)}\right) \log \left( 1 - f_{\mathbf{w},b}\left( \mathbf{x}^{(i)} \right) \right)\right]$$
+
+## Gradient Descent in Logistic Regression
+
+$repeate\space until\space converge${
+$$
+w_j = w_j - \alpha \frac{1}{m}\sum\limits^{m-1}_{i=0} (f_{(\vec{w},b)}(\vec{x}^{(i)}) - y^{(i)})x_j^{(i)}
+\newline
+b = b - \alpha \frac{1}{m}\sum\limits^{m-1}_{i=0} (f_{(\vec{w},b)}(\vec{x}^{(i)}) - y^{(i)})
+$$
+}
+
+Seems same as linear regression, but $f_{(\vec{w},b)}$ isdifferent from linear regression.
+$$f_{\vec{w},b}(z) = \frac{1}{1+e^{-(\vec{w}\cdot\vec{x}+b)}} = P(y=1|\vec{x};\vec{w},b)$$
+
+**Same concepts**:
+* Monitor gradient descent (learning curve)
+* Vectorized implementation
+* Feature Scaling
+
+## Overfitting / Underfitting
+**Generalization**: good prediction on new examples
+
+Overfitting(High variance) - Just Right(gerneralization) - Underrfitting(High bias)
+Too many features - Just right - Too few features
+
+### Addressing overfitting
+* Collect more training data
+* Select features to include/exclude
+* Regularization - reduce size of parameters 
+
+## Regularzation 
+**Intuition**: reduce the size of the parameters, by adding a penalty to the cost function.
+
+
+* $\lambda = 0$ overfit
+* $\lambda >> 1$ underfit
+### Regularized Linear Regression
+Linear regression cost function (modified):
+$$J(w,b) = \frac{1}{2m}\sum\limits^{m-1}_0 (f_{(w,b)}(x^{(i)}) - y^{(i)})^2 + \frac{\lambda}{2m}\sum\limits^{n-1}_{j=0}w_j^2$$
+The second term is called the regularization term (No need to penalize $b$).
+
+
+$repeate\space until\space converge${
+$$
+w = w - \alpha [\frac{1}{m}\sum\limits^{m-1}_0 (f_{(w,b)}(x^{(i)}) - y^{(i)})x^{(i)} + \frac{\lambda}{m}w_j] = w(1-\frac{\lambda}{m}) - \alpha x\frac{1}{m}\sum\limits^{m-1}_0 (f_{(w,b)}(x^{(i)}) - y^{(i)})x^{(i)}
+\newline
+b = b - \alpha \frac{1}{m}\sum\limits^{m-1}_0 (f_{(w,b)}(x^{(i)}) - y^{(i)})\text{ (don't have to regularize b)}$$ 
+}
+
+### Regularized Logistic Regression
+Logistic regression cost function (modified):
+$$J(\vec{w},b) = -\frac{1}{m}{\sum^{m-1}_0}\left[ y^{(i)} \log\left(f_{\mathbf{w},b}\left( \mathbf{x}^{(i)} \right) \right) + \left( 1 - y^{(i)}\right) \log \left( 1 - f_{\mathbf{w},b}\left( \mathbf{x}^{(i)} \right) \right)\right] + \frac{\lambda}{2m}\sum\limits^{n-1}_{j=0}w_j^2$$
+
+Gradient Descent:
+
+$repeate\space until\space converge${
+$$
+w = w - \alpha [\frac{1}{m}\sum\limits^{m-1}_0 (f_{(w,b)}(x^{(i)}) - y^{(i)})x^{(i)} + \frac{\lambda}{m}w_j] = w(1-\frac{\lambda}{m}) - \alpha x\frac{1}{m}\sum\limits^{m-1}_0 (f_{(w,b)}(x^{(i)}) - y^{(i)})x^{(i)}
+\newline
+b = b - \alpha \frac{1}{m}\sum\limits^{m-1}_0 (f_{(w,b)}(x^{(i)}) - y^{(i)})\text{ (don't have to regularize b)}$$ 
+}
