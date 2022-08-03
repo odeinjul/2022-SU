@@ -129,9 +129,9 @@ void rst::rasterizer::draw(pos_buf_id pos_buffer, ind_buf_id ind_buffer, col_buf
                 float x_temp = i + shift[k][0], y_temp = j + shift[k][1];
                 int index = get_index_ssaa(i, j, x_temp, y_temp);
                 color += frame_buf_ssaa[index];
-                color /= 4.0;
             }
             Vector3f point_temp = {i, j, 0};
+            color /= 4.0;
             set_pixel(point_temp, color);
         }
     }
@@ -224,8 +224,8 @@ int rst::rasterizer::get_index(int x, int y)
 
 int rst::rasterizer::get_index_ssaa(int x, int y, float i, float j)
 {
-    i = int((i * 4 + 1) / 2);
-    j = int((j * 4 + 1) / 2);
+    i = int(((i - x) * 4 + 1) / 2);
+    j = int(((j - y) * 4 + 1) / 2);
     int ssaa_height = 2 * height;
     int ssaa_width = 2 * width;
     return ((ssaa_height - 1) - (y * 2 + j)) * ssaa_width + (x * 2 + i);
