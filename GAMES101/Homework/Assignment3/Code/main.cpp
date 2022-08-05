@@ -47,10 +47,43 @@ Eigen::Matrix4f get_model_matrix(float angle)
     return translate * rotation * scale;
 }
 
-Eigen::Matrix4f get_projection_matrix(float eye_fov, float aspect_ratio, float zNear, float zFar)
+Eigen::Matrix4f get_projection_matrix(float eye_fov, float aspect_ratio,
+                                      float zNear, float zFar)
 {
-    // TODO: Use the same projection matrix from the previous assignments
+    // Students will implement this function
 
+    Eigen::Matrix4f projection = Eigen::Matrix4f::Identity();
+
+    // Create the projection matrix for the given parameters.
+    float radian_fov = eye_fov * MY_PI / 180;
+
+    float yTop = -tan(radian_fov / 2) * abs(zNear);
+    float yBottom = -yTop;
+    float xRight = aspect_ratio * yTop;
+    float xLeft = -xRight;
+    //frustum -> cuboid
+    Eigen::Matrix4f trans, persp, ortho;
+    persp << zNear, 0, 0, 0,
+            0, zNear, 0, 0,
+            0, 0, zNear + zFar, - zNear * zFar,
+            0, 0, 1, 0;
+
+    //translation to original
+    trans << 1, 0, 0, - (xRight + xLeft) / 2,
+            0, 1, 0, - (yTop + yBottom) / 2,
+            0, 0, 1, - (zNear + zFar) / 2,
+            0, 0, 0, 1;
+
+    //rescale;
+    ortho << 2 / (xRight - xLeft), 0, 0, 0,
+            0, 2 / (yTop - yBottom), 0, 0,
+            0, 0, 2 / (zNear - zFar), 0,
+            0, 0, 0, 1;
+
+    ortho = ortho * trans;
+    projection = ortho * persp;
+    // Then return it.
+    return projection;
 }
 
 Eigen::Vector3f vertex_shader(const vertex_shader_payload& payload)
