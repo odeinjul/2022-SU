@@ -26,3 +26,12 @@ Activation of the layer: $\vec{a}^{[i]} = \{a_1^{[i]},a_2^{[i]} ...a_n^{[i]} \}$
 sigmoid => activation function
 
 **Predicts / Inference (Forward Propagation)**
+
+## Tensorflow Implementation    
+Use *Dense* layer, like this.
+
+$$\texttt{layer\_1 = Dense(units = 25, activation = 'sigmoid')}\\\texttt{a1 = layer\_1(x)}$$
+
+Note the differences between numpy and tensorflow.
+* numpy [1-D vector]
+* tensorflow [[2-D Matrix]]
