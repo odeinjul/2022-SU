@@ -35,3 +35,11 @@ $$\texttt{layer\_1 = Dense(units = 25, activation = 'sigmoid')}\\\texttt{a1 = la
 Note the differences between numpy and tensorflow.
 * numpy [1-D vector]
 * tensorflow [[2-D Matrix]]
+
+Another way to implement:
+$$\texttt{layer\_1 = Dense(units = 25, activation = 'sigmoid')}\\
+\texttt{layer\_2 = Dense(units = 10, activation = 'sigmoid')}\\
+\texttt{model = Sequential([layer\_1, layer\_2])}\\
+\texttt{model.compile(...)}\\
+\texttt{model.fit(x, y)}\\
+\texttt{model.predict(x\_new)}$$
