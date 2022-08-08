@@ -43,3 +43,14 @@ $$\texttt{layer\_1 = Dense(units = 25, activation = 'sigmoid')}\\
 \texttt{model.compile(...)}\\
 \texttt{model.fit(x, y)}\\
 \texttt{model.predict(x\_new)}$$
+
+## Neural Network Implementation in Python
+* Forward prop in a single layer for each neuron
+* General implementation
+$$\texttt{def Dense(a\_in, W, b, g)}\\
+\texttt{def sequential(x)}
+$$
+
+## Vectorization
+* Save weights for a single neuron in the same column.
+* Use 2D array for anything and $\texttt{np.matmul}$ or $\texttt{@}$ .
