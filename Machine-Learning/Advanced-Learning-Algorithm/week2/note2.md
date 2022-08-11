@@ -67,4 +67,18 @@ $$\texttt{f\_x = tf.nn.sigmoid(logit)}$$
 > When it's possible to overflow, subtract the exponents by the max $z_J$.
 > 
 > Setting `from_logits=True` as an argument to the loss function specifies that the output activation was linear rather than a softmax.
-## Multi-label Classification
+**Multi-label Classification**
+...
+
+## Advanced Neural Network Concept
+### Advanced Optimization
+* Adam Algorithm, automatically adjust the learning rate.
+  * Also different learning rate for every parameter.
+  * $w_j,b$ keeps moving in same direction, increase $\alpha$.
+  * $w_j,b$ keeps os  cillating, reduce $\alpha$.
+
+$$\texttt{model.compile(optimizer=tf.keras.optimizers.Adam(learning\_rate=1e-3), loss=...)}$$
+### Additional Layer Types
+* Convolutional layer, each unit only looks at a limited window of the input
+  * Faster
+  * Need less training data (less prone to overfitting)
