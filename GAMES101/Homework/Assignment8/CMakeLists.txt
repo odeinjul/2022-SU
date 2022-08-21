@@ -18,6 +18,8 @@ if(APPLE)
   # OSX Framework dependencies
   if(NOT BUILD_LIBCGL)
     include_directories( "/System/Library/Frameworks" )
+    include_directories(/usr/local/include)
+    include_directories("/opt/homebrew/include")
     find_library (COCOA_LIBRARIES Cocoa)
     find_library (IOKIT_LIBRARIES IOkit)
     find_library (COREVIDEO_LIBRARIES CoreVideo)
